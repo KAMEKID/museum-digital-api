@@ -20,4 +20,5 @@ db.sequelize = sequelize;
 
 db.quizzes = require('./quiz')(sequelize, Sequelize);
 db.museums = require('./museum')(sequelize, Sequelize);
+db.categorys = require('./category')(sequelize, Sequelize);
 module.exports = db;

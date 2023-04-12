@@ -5,6 +5,7 @@ const port = 5000;
 const quizRoute = require('./router/quiz')
 const jobsheetRoute = require('./router/jobsheet')
 const museumRoute = require('./router/museum')
+const categoryRoute = require('./router/category')
 
 app.use(cors());
 app.use(express.json());
@@ -14,12 +15,12 @@ const db = require('./models')
 db.sequelize.sync()
 
 app.get('/', (req, res) => {
-    res.send('Quiz ExpressJS API by Peika');
+    res.send('Quiz ExpressJS API by Kamek');
 });
 
 app.use('/api/quizzes', quizRoute)
 app.use('/api/jobsheet', jobsheetRoute)
 app.use('/api/museums', museumRoute)
-
+app.use('/api/categorys', categoryRoute)
 
 app.listen(port, () => console.log(`App listening on port http://localhost:${port}!`));

@@ -25,7 +25,7 @@ exports.submitOne = async (req, res) => {
             })
         }
     }catch (e) {
-        res.status(500).json({message: "sss"});
+        res.status(500).json({message: "jawaban anda benar"});
     }
 };
 
@@ -52,7 +52,7 @@ exports.submitMany = async (req,res) => {
             }
         }
         res.status(200).json({
-            message: `benar ${benar} dari ${totalSoal} soal`
+            message: `Benar ${benar} dari ${totalSoal} Soal`
         })
     }catch (e) {
         res.status(500).json({message: e.message});

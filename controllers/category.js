@@ -1,12 +1,12 @@
 const db = require("../models");
-const Museum = db.museums;
+const Category = db.categorys;
 const { Sequelize } = require("sequelize");
 
 exports.create = async (req, res) => {
   try {
-    const data = await Museum.create(req.body);
+    const data = await Category.create(req.body);
     res.json({
-      message: "quiz created successfully.",
+      message: "Category created successfully.",
       data: data,
     });
   } catch (error) {
@@ -19,10 +19,10 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const museums = await Museum.findAll();
+    const categorys = await Category.findAll();
     res.json({
-      message: "Museum retrieved successfully.",
-      data: museums,
+      message: "Category retrieved successfully.",
+      data: categorys,
     });
   } catch (error) {
     res.status(500).json({
@@ -35,14 +35,14 @@ exports.getAll = async (req, res) => {
 exports.findOne = async (req, res) => {
   const id = req.params.id;
   try {
-    const museums = await Museum.findByPk(id, { rejectOnEmpty: true });
+    const categorys = await Category.findByPk(id, { rejectOnEmpty: true });
     res.json({
-      message: `Museum retrieved successfully with id=${id}.`,
-      data: museums,
+      message: `Category retrieved successfully with id=${id}.`,
+      data: categorys,
     });
   } catch (error) {
     res.status(500).json({
-      message: error.message || "Some error occurred while retrieving Museum",
+      message: error.message || "Some error occurred while retrieving Category",
       data: null,
     });
   }
@@ -50,7 +50,7 @@ exports.findOne = async (req, res) => {
 
 exports.getById = async (req, res) => {
   const id = req.params.id;
-  const num = await Museum.count({ where: { id: id } });
+  const num = await Category.count({ where: { id: id } });
   if (isNaN(id)) {
     res
       .status(400)
@@ -65,11 +65,11 @@ exports.getById = async (req, res) => {
     return;
   }
   try {
-    const seeMuseum = await Museum.findByPk(id, { rejectOnEmpty: true });
+    const seeCategory = await Category.findByPk(id, { rejectOnEmpty: true });
     res.status(200).send({
       status: 200,
       message: `Sukses data dengan ${id} berhasil ditemukan`,
-      data: seeMuseum,
+      data: seeCategory,
     });
   } catch (error) {
     res.status(500).send({
@@ -83,7 +83,7 @@ exports.getById = async (req, res) => {
 exports.update = async (req, res) => {
   const id = req.params.id;
   try {
-    const quiz = await Museum.findByPk(id, { rejectOnEmpty: true });
+    const quiz = await Category.findByPk(id, { rejectOnEmpty: true });
     quiz.update(req.body, {
       where: { id },
     });
@@ -98,16 +98,16 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   const id = req.params.id;
   try {
-    const museum = await Museum.findByPk(id, { rejectOnEmpty: true });
+    const category = await Category.findByPk(id, { rejectOnEmpty: true });
 
-    museum.destroy();
+    category.destroy();
 
     res.json({
-      message: "Museum deleted successfully.",
+      message: "Category deleted successfully.",
     });
   } catch (error) {
     res.status(500).json({
-      message: error.message || "Some error occurred while retrieving Museum",
+      message: error.message || "Some error occurred while retrieving Category",
       data: null,
     });
   }
